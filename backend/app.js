@@ -3,9 +3,13 @@
  */
 
 const express = require('express');
+const bodyParser = require('body-parser');
 
 // create the express app
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // CORS management middleware
 app.use((req, res, next) => {
@@ -20,6 +24,18 @@ app.use((req, res, next) => {
     'GET, POST, PATCH, DELETE, OPTIONS');
   next();
 })
+
+// Middleware to manage POST requests for posting a new post
+app.post('/api/posts/', (req, res, next) => {
+
+  const post = req.body;
+  console.log(post);
+
+  res.status(201).json({
+    message: 'Post added successfully'
+  });
+
+});
 
 // first argument(s) (like the path) are filters
 // last argument is default
