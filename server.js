@@ -1,10 +1,20 @@
-// Node import
-const http = require('http');
+/*
+ * Node server configuration
+ */
+
+const http = require('http');         // import Node
+const app = require('./backend/app'); // import Express
+
+const port = process.env.PORT || 3000;
 
 // create server
-const server = http.createServer((req, res) => {
-  res.end('This is my first response');
-});
+// Use Express app as listener for incoming requests
+app.set('port', port);
+const server = http.createServer(app);
+
+// const server = http.createServer((req, res) => {
+//   res.end('Response without express');
+// });
 
 // port number
-server.listen(process.env.PORT || 3000);
+server.listen(port);
