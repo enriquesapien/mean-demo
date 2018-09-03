@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// CORS management middleware
+// Middleware to manage CORS configuration
 app.use((req, res, next) => {
   // allow clients from any other domain
   // e.g. localhost:4200 (Angular) -> localhost:3000 (Node/Express)
@@ -37,9 +37,8 @@ app.post('/api/posts/', (req, res, next) => {
 
 });
 
-// first argument(s) (like the path) are filters
-// last argument is default
-app.use('/api/posts', (req, res, next) => {
+// Middleware to manage GET requests for fetching existing posts
+app.get('/api/posts', (req, res, next) => {
 
   const posts = [
     {
