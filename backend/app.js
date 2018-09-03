@@ -5,6 +5,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+// import required models
+const Post = require('./models/post');
+
 // create the express app
 const app = express();
 
@@ -25,10 +28,16 @@ app.use((req, res, next) => {
   next();
 })
 
-// Middleware to manage POST requests for posting a new post
+// Middleware to manage POST requests for creating a new post
 app.post('/api/posts/', (req, res, next) => {
 
-  const post = req.body;
+  // create Post entity based on model
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content
+  });
+
+  // const post = req.body;
   console.log(post);
 
   res.status(201).json({
