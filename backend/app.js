@@ -7,14 +7,25 @@ const express = require('express');
 // create the express app
 const app = express();
 
-// create and register new middlewares
-app.use((req, res, next) => {
-  console.log('First middleware');
-  next(); // continue to next middleware
-});
+app.use('/api/posts', (req, res, next) => {
 
-app.use((req, res, next) => {
-  res.send('Hello from express!');
+  const posts = [
+    {
+      id: 'sdfw53453',
+      title: 'First server-side post',
+      content: 'This is coming from the server'
+    },
+    {
+      id: 'qwer57858',
+      title: 'Second server-side post',
+      content: 'This is coming from the server, too'
+    }
+  ];
+
+  res.status(200).json({
+    message: 'Posts fetched successufully!',
+    posts: posts
+  });
 });
 
 // export the entire express app
