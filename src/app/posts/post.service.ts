@@ -13,6 +13,10 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
+  getPost(id: string) {
+    return {...this.posts.find(p => p.id === id)};
+  }
+
   getPosts() {
     this.http
     .get<{ message: string, posts: any }>(
