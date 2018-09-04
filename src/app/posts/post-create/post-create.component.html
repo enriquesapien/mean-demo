@@ -8,7 +8,7 @@
           name="title"
           minlength="3"
           placeholder="Post Title"
-          [ngModel]="post.title"
+          [ngModel]="post?.title"
           required
           #title="ngModel">
         </mat-form-field>
@@ -19,7 +19,7 @@
           rows="4"
           name="content"
           placeholder="Post Content"
-          [ngModel]="post.content"
+          [ngModel]="post?.content"
           required
           #content="ngModel"></textarea>
         </mat-form-field>
