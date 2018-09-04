@@ -38,6 +38,7 @@ app.use((req, res, next) => {
   next();
 })
 
+// CREATE NEW POST
 // Middleware to manage POST requests for creating a new post
 app.post('/api/posts/', (req, res, next) => {
 
@@ -59,6 +60,7 @@ app.post('/api/posts/', (req, res, next) => {
 
 });
 
+// FETCH POSTS
 // Middleware to manage GET requests for fetching existing posts
 app.get('/api/posts', (req, res, next) => {
 
@@ -68,6 +70,21 @@ app.get('/api/posts', (req, res, next) => {
       posts: documents
     });
   });
+
+});
+
+// DELETE POST
+// Middleware to manage DELETE requests to delete a Post record
+app.delete('/api/posts/:id', (req, res, next) => {
+
+  Post.deleteOne({ _id: req.params.id })
+  .then(result => {
+    console.log(result);
+    res.status(200).json({
+      message: 'Post deleted!'
+    });
+  });
+
 
 });
 
