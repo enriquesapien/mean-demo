@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 
 import { Post } from './post.model';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -11,7 +12,7 @@ export class PostService {
 
   private postsUpdated = new Subject<Post[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getPost(id: string) {
     return this.http.get<{ _id: string, title: string, content: string }>('http://localhost:3000/api/posts/' + id);
@@ -51,6 +52,7 @@ export class PostService {
       post.id = responseData.postId;
       this.posts.push(post);
       this.postsUpdated.next([...this.posts]);
+      this.router.navigate(['/']);
     });
   }
 
@@ -64,6 +66,7 @@ export class PostService {
       updatedPosts[oldPostIndex] = post;
       this.posts = updatedPosts;
       this.postsUpdated.next([...this.posts]);
+      this.router.navigate(['/']);
     });
 
   }
@@ -74,7 +77,6 @@ export class PostService {
       // remove deleted post
       this.posts = this.posts.filter(post => post.id !== postId);
       this.postsUpdated.next([...this.posts]);
-
     });
   }
 
