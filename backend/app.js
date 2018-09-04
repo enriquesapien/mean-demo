@@ -62,23 +62,13 @@ app.post('/api/posts/', (req, res, next) => {
 // Middleware to manage GET requests for fetching existing posts
 app.get('/api/posts', (req, res, next) => {
 
-  const posts = [
-    {
-      id: 'sdfw53453',
-      title: 'First server-side post',
-      content: 'This is coming from the server'
-    },
-    {
-      id: 'qwer57858',
-      title: 'Second server-side post',
-      content: 'This is coming from the server, too'
-    }
-  ];
-
-  res.status(200).json({
-    message: 'Posts fetched successufully!',
-    posts: posts
+  Post.find().then(documents => {
+    res.status(200).json({
+      message: 'Posts fetched successufully!',
+      posts: documents
+    });
   });
+
 });
 
 // export the entire express app
