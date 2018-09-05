@@ -26,8 +26,8 @@ export class PostCreateComponent implements OnInit {
     // define the form controls
     this.form = new FormGroup({
       title:    new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
-      content:  new FormControl(null, {validators: [Validators.required]}),
-      image:    new FormControl(null, {validators: [Validators.required]})
+      content:  new FormControl(null, {validators: [Validators.required]})/*,
+      image:    new FormControl(null, {validators: [Validators.required]})*/
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
