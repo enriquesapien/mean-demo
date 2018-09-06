@@ -51,20 +51,27 @@ router.get("/:id", (req, res, next) => {
 // FETCH POSTS
 // Middleware to manage GET requests for fetching existing posts
 router.get('', (req, res, next) => {
+  const pageSize = +req.query.pageSize;
+  const currentPage = +req.query.page;
+  const postQuery = Post.find();
 
-  Post.find().then(documents => {
+  if (pageSize && currentPage) {
+    postQuery
+      .skip(pageSize * (currentPage - 1))
+      .limit(pageSize);
+  }
+
+  postQuery.then(documents => {
     res.status(200).json({
       message: 'Posts fetched successufully!',
       posts: documents
     });
   });
-
 });
 
 // DELETE POST
 // Middleware to manage DELETE requests to delete a Post record
 router.delete('/:id', (req, res, next) => {
-
   Post.deleteOne({ _id: req.params.id })
   .then(createdPost => {
     console.log(createdPost);
