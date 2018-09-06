@@ -12,7 +12,10 @@ const postsRoutes = require("./routes/posts");
 const app = express();
 
 // configure connection to MongoDB
-mongoose.connect('mongodb+srv://mdb_user_rw:IJZntwHzfjbKtfgB@cluster0-hecja.mongodb.net/node-angular?retryWrites=true')
+mongoose.connect(
+  'mongodb+srv://mdb_user_rw:' +
+  process.env.MONGO_ATLAS_PW +
+  '@cluster0-hecja.mongodb.net/node-angular?retryWrites=true')
 .then(() => {
   console.log('Connected to database!');
 })
