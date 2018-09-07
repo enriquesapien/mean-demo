@@ -6,8 +6,16 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatGridListModule,
+  MatSelectModule,
+  MatRadioModule,
+  MatSliderModule,
+  MatSlideToggleModule
 } from '@angular/material';
+
 
 @NgModule({
   exports: [
@@ -17,7 +25,14 @@ import {
     MatToolbarModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ]
 })
 export class AngularMaterialModule {

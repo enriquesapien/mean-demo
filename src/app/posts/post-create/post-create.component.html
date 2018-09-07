@@ -27,6 +27,63 @@
           placeholder="Post Content"></textarea>
           <mat-error *ngIf="form.get('content').invalid">Please enter a post content.</mat-error>
         </mat-form-field>
+
+        <mat-grid-list cols="3" rowHeight="2:1">
+          <mat-grid-tile>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="Start Date">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="End Date">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+
+            <mat-form-field>
+              <mat-select placeholder="Days of the Week" [formControl]="daysOfWeek" multiple>
+                <mat-select-trigger>
+                  {{daysOfWeek.value ? daysOfWeek.value[0] : ''}}
+                  <span *ngIf="daysOfWeek.value?.length > 1" class="example-additional-selection">
+                    (+{{daysOfWeek.value.length - 1}} {{daysOfWeek.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let daysOfWeek of daysOfWeekList" [value]="daysOfWeek">{{daysOfWeek}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="2">
+
+            <section class="example-section">
+              <label class="example-margin">Post Type:</label>
+              <mat-radio-group>
+                <mat-radio-button class="example-margin" value="primary">
+                  Premium
+                </mat-radio-button>
+                <mat-radio-button class="example-margin" value="accent">
+                  Standard
+                </mat-radio-button>
+              </mat-radio-group>
+            </section>
+
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <section class="example-section">
+              <mat-slide-toggle
+                  class="example-margin">
+                Show Email
+              </mat-slide-toggle>
+            </section>
+          </mat-grid-tile>
+        </mat-grid-list>
+
         <button
         mat-raised-button
         color="accent"

@@ -17,6 +17,10 @@ export class PostCreateComponent implements OnInit {
   isLoading = false;
   form: FormGroup;
   imagePreview: string | ArrayBuffer;
+
+  daysOfWeek = new FormControl();
+  daysOfWeekList: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
   private mode = 'create';
   private postId: string;
 
